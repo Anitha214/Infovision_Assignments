@@ -1,0 +1,3 @@
+interface Plan {
+    double getPerMinuteRate();
+}
