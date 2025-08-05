@@ -1,0 +1,106 @@
+spring:
+  application:
+    name: ApiGatewayApplication
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            maxAge: 30
+      routes:
+        - id: AuthService
+          uri: lb://AuthService
+          predicates:
+            - Path=/auth/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
+
+        - id: UserService
+          uri: lb://UserService
+          predicates:
+            - Path=/user/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
+
+        - id: PlanService
+          uri: lb://PlanService
+          predicates:
+            - Path=/plan/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
+
+        - id: UsageService
+          uri: lb://UsageService
+          predicates:
+            - Path=/usage/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
+
+
+        - id: BillingService
+          uri: lb://BillingService
+          predicates:
+            - Path=/billing/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders: '*'
+              maxAge: 30
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
